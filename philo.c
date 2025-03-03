@@ -26,15 +26,15 @@ static void cleanup_resources(t_data *data)
 {
     int i;
 
+    i = 0;
+    pthread_mutex_destroy(&data->print_mutex);
     if (data->philosophers)
     {
-        i = 0;
         while (i < data->num_philos)
         {
             pthread_mutex_destroy(&data->forks[i].mutex);
             i++;
         }
-        pthread_mutex_destroy(&data->print_mutex);
         free(data->philosophers);
         free(data->forks);
     }

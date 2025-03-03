@@ -49,7 +49,7 @@ void monitor_philosophers(t_data *data) {
             for (i = 0; i < data->num_philos; i++) {
                 if (data->philosophers[i].times_eaten < data->must_eat_count) {
                     all_ate = false;
-                    break;
+                    break ;
                 }
             }
         }
