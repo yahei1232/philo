@@ -38,18 +38,13 @@ typedef struct s_data
     t_fork          *forks;
 }   t_data;
 
-typedef struct Data {
-    int* array;
-    size_t size;
-    size_t capacity;
-} Data;
-
+// Function prototypes
 long long    get_time(void);
 void        print_status(t_philo *philo, char *status);
 int         init_data(t_data *data, int argc, char **argv);
-void    *philosopher_routine(void *arg);
-int     create_threads(t_data *data);
-void    join_threads(t_data *data);
-void    monitor_philosophers(t_data *data);
+void        *philosopher_routine(void *arg);
+int         create_threads(t_data *data);
+void        join_threads(t_data *data);
+void        monitor_philosophers(t_data *data);
 
 #endif
