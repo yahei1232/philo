@@ -8,18 +8,17 @@ long long	get_time(void)
     return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void print_status(t_philo *philo, char *status) {
-    long long current_time;
-    int died;
-
-    current_time = get_time() - philo->data->start_time;
+void	print_status(t_philo *philo, char *status)
+{
+    long long	current_time;
 
     pthread_mutex_lock(&philo->data->print_mutex);
-    died = philo->data->someone_died;
-    pthread_mutex_unlock(&philo->data->print_mutex);
-
-    if (!died)
+    if (!philo->data->someone_died)
+    {
+        current_time = get_time() - philo->data->start_time;
         printf("%lld %d %s\n", current_time, philo->id + 1, status);
+    }
+    pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 static void cleanup_resources(t_data *data)
@@ -27,9 +26,9 @@ static void cleanup_resources(t_data *data)
     int i;
 
     i = 0;
-    pthread_mutex_destroy(&data->print_mutex);
     if (data->philosophers)
     {
+        pthread_mutex_destroy(&data->print_mutex);
         while (i < data->num_philos)
         {
             pthread_mutex_destroy(&data->forks[i].mutex);
