@@ -50,6 +50,8 @@ static int init_mutexes(t_data *data)
     i = 0;
     if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
         return (0);
+    if (pthread_mutex_init(&data->someone_died, NULL) != 0)
+        return (0);
 
     while (i < data->num_philos)
     {
